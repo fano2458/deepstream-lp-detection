@@ -1,0 +1,134 @@
+{
+  "idle_baseline": {
+    "duration_s": 12.008819818496704,
+    "cpu_percent_avg": 14.3,
+    "cpu_percent_max": 24.1,
+    "ram_used_mb_avg": 28779.5869140625,
+    "ram_used_mb_max": 28785.76953125,
+    "gpu_memory_mb_avg": 28164.25,
+    "gpu_memory_mb_max": 28167.0,
+    "label": "idle"
+  },
+  "benchmarks": [
+    {
+      "config": "benchmarks/configs/deepstream_app_fp16_s01.txt",
+      "exit_code": 0,
+      "fps_samples": [
+        0.0,
+        191.49,
+        196.99
+      ],
+      "fps_avg": 194.24,
+      "fps_max": 196.99,
+      "log_tail": "0:00:04.647758647 \u001b[331m174042\u001b[00m 0xaaaaeaff9630 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::deserializeEngineAndBackend() <nvdsinfer_context_impl.cpp:1988> [UID = 1]: deserialized trt engine from :/home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.879963509 \u001b[331m174042\u001b[00m 0xaaaaeaff9630 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::generateBackendContext() <nvdsinfer_context_impl.cpp:2091> [UID = 1]: Use deserialized engine model: /home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.925614105 \u001b[331m174042\u001b[00m 0xaaaaeaff9630 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer_impl.cpp:328:notifyLoadModelStatus:<primary_gie>\u001b[00m [UID 1]: Load new model:/home/jetson/Desktop/DeepStream-Yolo/benchmarks/configs/config_infer_primary_fp16_s01.txt sucessfully\n\nINFO: [FullDims Engine Info]: layers num: 2\n\n0   INPUT  kFLOAT input           3x640x640       min: 1x3x640x640     opt: 16x3x640x640    Max: 16x3x640x640    \n\n1   OUTPUT kFLOAT output          8400x6          min: 0               opt: 0               Max: 0               \n\n\n\n\n\nRuntime commands:\n\n\th: Print this help\n\n\tq: Quit\n\n\n\n\tp: Pause\n\n\tr: Resume\n\n\n\n** INFO: <bus_callback:239>: Pipeline ready\n\n\n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nOpening in BLOCKING MODE \n\n** INFO: <bus_callback:225>: Pipeline running\n\n\n\n\n\n**PERF:  FPS 0 (Avg)\t\n\n**PERF:  0.00 (0.00)\t\n\n**PERF:  191.49 (191.43)\t\n\n**PERF:  196.99 (194.55)\t\n\nnvstreammux: Successfully handled EOS for source_id=0\n\n** INFO: <bus_callback:262>: Received EOS. Exiting ...\n\n\n\nQuitting\n\nApp run successful\n",
+      "duration_s": 18.085196256637573,
+      "cpu_percent_avg": 24.333333333333332,
+      "cpu_percent_max": 36.9,
+      "ram_used_mb_avg": 30646.895833333332,
+      "ram_used_mb_max": 31404.50390625,
+      "gpu_memory_mb_avg": 30207.0,
+      "gpu_memory_mb_max": 30844.0,
+      "stream_count": 1,
+      "precision": "fp16"
+    },
+    {
+      "config": "benchmarks/configs/deepstream_app_fp16_s02.txt",
+      "exit_code": 0,
+      "fps_samples": [
+        0.0,
+        143.3,
+        148.92
+      ],
+      "fps_avg": 146.11,
+      "fps_max": 148.92,
+      "log_tail": "0:00:04.483123586 \u001b[335m174526\u001b[00m 0xaaaacf3894c0 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::deserializeEngineAndBackend() <nvdsinfer_context_impl.cpp:1988> [UID = 1]: deserialized trt engine from :/home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.708292802 \u001b[335m174526\u001b[00m 0xaaaacf3894c0 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::generateBackendContext() <nvdsinfer_context_impl.cpp:2091> [UID = 1]: Use deserialized engine model: /home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.755621689 \u001b[335m174526\u001b[00m 0xaaaacf3894c0 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer_impl.cpp:328:notifyLoadModelStatus:<primary_gie>\u001b[00m [UID 1]: Load new model:/home/jetson/Desktop/DeepStream-Yolo/benchmarks/configs/config_infer_primary_fp16_s02.txt sucessfully\n\nINFO: [FullDims Engine Info]: layers num: 2\n\n0   INPUT  kFLOAT input           3x640x640       min: 1x3x640x640     opt: 16x3x640x640    Max: 16x3x640x640    \n\n1   OUTPUT kFLOAT output          8400x6          min: 0               opt: 0               Max: 0               \n\n\n\n\n\nRuntime commands:\n\n\th: Print this help\n\n\tq: Quit\n\n\n\n\tp: Pause\n\n\tr: Resume\n\n\n\n** INFO: <bus_callback:239>: Pipeline ready\n\n\n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\n** INFO: <bus_callback:225>: Pipeline running\n\n\n\n\n\n**PERF:  FPS 0 (Avg)\tFPS 1 (Avg)\t\n\n**PERF:  0.00 (0.00)\t0.00 (0.00)\t\n\n**PERF:  143.30 (143.15)\t143.30 (143.15)\t\n\n**PERF:  148.92 (146.40)\t148.92 (146.40)\t\n\nnvstreammux: Successfully handled EOS for source_id=1\n\nnvstreammux: Successfully handled EOS for source_id=0\n\n** INFO: <bus_callback:262>: Received EOS. Exiting ...\n\n\n\nQuitting\n\nApp run successful\n",
+      "duration_s": 21.09278416633606,
+      "cpu_percent_avg": 29.214285714285715,
+      "cpu_percent_max": 37.4,
+      "ram_used_mb_avg": 30788.37667410714,
+      "ram_used_mb_max": 31460.5546875,
+      "gpu_memory_mb_avg": 30319.714285714286,
+      "gpu_memory_mb_max": 30839.0,
+      "stream_count": 2,
+      "precision": "fp16"
+    },
+    {
+      "config": "benchmarks/configs/deepstream_app_fp16_s04.txt",
+      "exit_code": 0,
+      "fps_samples": [
+        0.0,
+        94.09,
+        96.82,
+        96.19
+      ],
+      "fps_avg": 95.7,
+      "fps_max": 96.82,
+      "log_tail": "0:00:04.449595628 \u001b[336m175085\u001b[00m 0xaaaaff789720 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::deserializeEngineAndBackend() <nvdsinfer_context_impl.cpp:1988> [UID = 1]: deserialized trt engine from :/home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.667089984 \u001b[336m175085\u001b[00m 0xaaaaff789720 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::generateBackendContext() <nvdsinfer_context_impl.cpp:2091> [UID = 1]: Use deserialized engine model: /home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.718224459 \u001b[336m175085\u001b[00m 0xaaaaff789720 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer_impl.cpp:328:notifyLoadModelStatus:<primary_gie>\u001b[00m [UID 1]: Load new model:/home/jetson/Desktop/DeepStream-Yolo/benchmarks/configs/config_infer_primary_fp16_s04.txt sucessfully\n\nINFO: [FullDims Engine Info]: layers num: 2\n\n0   INPUT  kFLOAT input           3x640x640       min: 1x3x640x640     opt: 16x3x640x640    Max: 16x3x640x640    \n\n1   OUTPUT kFLOAT output          8400x6          min: 0               opt: 0               Max: 0               \n\n\n\n\n\nRuntime commands:\n\n\th: Print this help\n\n\tq: Quit\n\n\n\n\tp: Pause\n\n\tr: Resume\n\n\n\n** INFO: <bus_callback:239>: Pipeline ready\n\n\n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\n** INFO: <bus_callback:225>: Pipeline running\n\n\n\n\n\n**PERF:  FPS 0 (Avg)\tFPS 1 (Avg)\tFPS 2 (Avg)\tFPS 3 (Avg)\t\n\n**PERF:  0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t\n\n**PERF:  94.09 (93.91)\t94.09 (93.91)\t94.09 (93.91)\t94.09 (93.91)\t\n\n**PERF:  96.82 (95.52)\t96.82 (95.52)\t96.82 (95.52)\t96.82 (95.52)\t\n\n**PERF:  96.19 (95.76)\t96.19 (95.76)\t96.19 (95.76)\t96.19 (95.76)\t\n\nnvstreammux: Successfully handled EOS for source_id=3\n\nnvstreammux: Successfully handled EOS for source_id=2\n\nnvstreammux: Successfully handled EOS for source_id=0\n\nnvstreammux: Successfully handled EOS for source_id=1\n\n** INFO: <bus_callback:262>: Received EOS. Exiting ...\n\n\n\nQuitting\n\nApp run successful\n",
+      "duration_s": 27.123433351516724,
+      "cpu_percent_avg": 32.46666666666667,
+      "cpu_percent_max": 41.9,
+      "ram_used_mb_avg": 30962.462239583332,
+      "ram_used_mb_max": 31517.82421875,
+      "gpu_memory_mb_avg": 30449.777777777777,
+      "gpu_memory_mb_max": 30897.0,
+      "stream_count": 4,
+      "precision": "fp16"
+    },
+    {
+      "config": "benchmarks/configs/deepstream_app_fp16_s08.txt",
+      "exit_code": 0,
+      "fps_samples": [
+        0.0,
+        53.670000000000016,
+        56.11000000000001,
+        56.040000000000006,
+        56.10000000000001,
+        56.34000000000002,
+        56.12
+      ],
+      "fps_avg": 55.73000000000002,
+      "fps_max": 56.34000000000002,
+      "log_tail": "0:00:04.573749290 \u001b[332m175813\u001b[00m 0xaaaaaf202a40 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::deserializeEngineAndBackend() <nvdsinfer_context_impl.cpp:1988> [UID = 1]: deserialized trt engine from :/home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.793084844 \u001b[332m175813\u001b[00m 0xaaaaaf202a40 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer.cpp:682:gst_nvinfer_logger:<primary_gie>\u001b[00m NvDsInferContext[UID 1]: Info from NvDsInferContextImpl::generateBackendContext() <nvdsinfer_context_impl.cpp:2091> [UID = 1]: Use deserialized engine model: /home/jetson/Desktop/DeepStream-Yolo/model_b16_gpu0_fp16.engine\n\n0:00:04.850722549 \u001b[332m175813\u001b[00m 0xaaaaaf202a40 \u001b[36mINFO   \u001b[00m \u001b[00m             nvinfer gstnvinfer_impl.cpp:328:notifyLoadModelStatus:<primary_gie>\u001b[00m [UID 1]: Load new model:/home/jetson/Desktop/DeepStream-Yolo/benchmarks/configs/config_infer_primary_fp16_s08.txt sucessfully\n\nINFO: [FullDims Engine Info]: layers num: 2\n\n0   INPUT  kFLOAT input           3x640x640       min: 1x3x640x640     opt: 16x3x640x640    Max: 16x3x640x640    \n\n1   OUTPUT kFLOAT output          8400x6          min: 0               opt: 0               Max: 0               \n\n\n\n\n\nRuntime commands:\n\n\th: Print this help\n\n\tq: Quit\n\n\n\n\tp: Pause\n\n\tr: Resume\n\n\n\n** INFO: <bus_callback:239>: Pipeline ready\n\n\n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\n\n\n**PERF:  FPS 0 (Avg)\tFPS 1 (Avg)\tFPS 2 (Avg)\tFPS 3 (Avg)\tFPS 4 (Avg)\tFPS 5 (Avg)\tFPS 6 (Avg)\tFPS 7 (Avg)\t\n\n**PERF:  0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t\n\n** INFO: <bus_callback:225>: Pipeline running\n\n\n\n**PERF:  53.32 (53.19)\t54.77 (54.64)\t53.59 (53.46)\t53.32 (53.19)\t53.59 (53.46)\t53.59 (53.46)\t53.59 (53.46)\t53.59 (53.46)\t\n\n**PERF:  56.11 (54.80)\t56.11 (55.43)\t56.11 (54.92)\t56.11 (54.80)\t56.11 (54.92)\t56.11 (54.92)\t56.11 (54.92)\t56.11 (54.92)\t\n\n**PERF:  56.04 (55.31)\t56.04 (55.71)\t56.04 (55.39)\t56.04 (55.31)\t56.04 (55.39)\t56.04 (55.39)\t56.04 (55.39)\t56.04 (55.39)\t\n\n**PERF:  56.10 (55.49)\t56.10 (55.79)\t56.10 (55.55)\t56.10 (55.49)\t56.10 (55.55)\t56.10 (55.55)\t56.10 (55.55)\t56.10 (55.55)\t\n\n**PERF:  56.34 (55.68)\t56.34 (55.92)\t56.34 (55.73)\t56.34 (55.68)\t56.34 (55.73)\t56.34 (55.73)\t56.34 (55.73)\t56.34 (55.73)\t\n\n**PERF:  56.12 (55.77)\t56.12 (55.96)\t56.12 (55.81)\t56.12 (55.77)\t56.12 (55.81)\t56.12 (55.81)\t56.12 (55.81)\t56.12 (55.81)\t\n\nnvstreammux: Successfully handled EOS for source_id=6\n\nnvstreammux: Successfully handled EOS for source_id=5\n\nnvstreammux: Successfully handled EOS for source_id=7\n\nnvstreammux: Successfully handled EOS for source_id=4\n\nnvstreammux: Successfully handled EOS for source_id=2\n\nnvstreammux: Successfully handled EOS for source_id=3\n\nnvstreammux: Successfully handled EOS for source_id=1\n\nnvstreammux: Successfully handled EOS for source_id=0\n\n** INFO: <bus_callback:262>: Received EOS. Exiting ...\n\n\n\nQuitting\n\nApp run successful\n",
+      "duration_s": 42.19787406921387,
+      "cpu_percent_avg": 33.92857142857143,
+      "cpu_percent_max": 39.7,
+      "ram_used_mb_avg": 31170.825613839286,
+      "ram_used_mb_max": 31623.28125,
+      "gpu_memory_mb_avg": 30621.5,
+      "gpu_memory_mb_max": 31028.0,
+      "stream_count": 8,
+      "precision": "fp16"
+    },
+    {
+      "config": "benchmarks/configs/deepstream_app_fp16_s16.txt",
+      "exit_code": 0,
+      "fps_samples": [
+        0.0,
+        28.418749999999996,
+        30.670000000000012,
+        30.60000000000001,
+        30.509999999999994,
+        29.94,
+        30.699999999999992,
+        30.509999999999994,
+        30.66000000000001,
+        29.89999999999999,
+        29.83999999999999,
+        29.980000000000008,
+        30.449999999999992
+      ],
+      "fps_avg": 30.1815625,
+      "fps_max": 30.699999999999992,
+      "log_tail": "NvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteOpen : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nNvMMLiteBlockCreate : Block : BlockType = 261 \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\nOpening in BLOCKING MODE \n\n\n\n**PERF:  FPS 0 (Avg)\tFPS 1 (Avg)\tFPS 2 (Avg)\tFPS 3 (Avg)\tFPS 4 (Avg)\tFPS 5 (Avg)\tFPS 6 (Avg)\tFPS 7 (Avg)\tFPS 8 (Avg)\tFPS 9 (Avg)\tFPS 10 (Avg)\tFPS 11 (Avg)\tFPS 12 (Avg)\tFPS 13 (Avg)\tFPS 14 (Avg)\tFPS 15 (Avg)\t\n\n**PERF:  0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t0.00 (0.00)\t\n\n** INFO: <bus_callback:225>: Pipeline running\n\n\n\n**PERF:  28.46 (28.25)\t27.50 (27.31)\t29.45 (29.22)\t27.50 (27.31)\t27.78 (27.59)\t27.78 (27.59)\t28.46 (28.25)\t29.45 (29.22)\t30.52 (30.27)\t27.78 (27.59)\t29.45 (29.22)\t27.78 (27.59)\t29.45 (29.22)\t27.78 (27.59)\t27.78 (27.59)\t27.78 (27.59)\t\n\n**PERF:  30.67 (29.75)\t30.67 (29.33)\t30.67 (30.17)\t30.67 (29.33)\t30.67 (29.45)\t30.67 (29.45)\t30.67 (29.75)\t30.67 (30.17)\t30.67 (30.59)\t30.67 (29.45)\t30.67 (30.17)\t30.67 (29.45)\t30.67 (30.17)\t30.67 (29.45)\t30.67 (29.45)\t30.67 (29.45)\t\n\n**PERF:  30.60 (30.06)\t30.60 (29.80)\t30.60 (30.33)\t30.60 (29.80)\t30.60 (29.87)\t30.60 (29.87)\t30.60 (30.06)\t30.60 (30.33)\t30.60 (30.59)\t30.60 (29.87)\t30.60 (30.33)\t30.60 (29.87)\t30.60 (30.33)\t30.60 (29.87)\t30.60 (29.87)\t30.60 (29.87)\t\n\n**PERF:  30.51 (30.15)\t30.51 (29.96)\t30.51 (30.35)\t30.51 (29.96)\t30.51 (30.01)\t30.51 (30.01)\t30.51 (30.15)\t30.51 (30.35)\t30.51 (30.54)\t30.51 (30.01)\t30.51 (30.35)\t30.51 (30.01)\t30.51 (30.35)\t30.51 (30.01)\t30.51 (30.01)\t30.51 (30.01)\t\n\n**PERF:  29.94 (30.12)\t29.94 (29.97)\t29.94 (30.27)\t29.94 (29.97)\t29.94 (30.01)\t29.94 (30.01)\t29.94 (30.12)\t29.94 (30.27)\t29.94 (30.42)\t29.94 (30.01)\t29.94 (30.27)\t29.94 (30.01)\t29.94 (30.27)\t29.94 (30.01)\t29.94 (30.01)\t29.94 (30.01)\t\n\n**PERF:  30.70 (30.24)\t30.70 (30.11)\t30.70 (30.36)\t30.70 (30.11)\t30.70 (30.15)\t30.70 (30.15)\t30.70 (30.24)\t30.70 (30.36)\t30.70 (30.49)\t30.70 (30.15)\t30.70 (30.36)\t30.70 (30.15)\t30.70 (30.36)\t30.70 (30.15)\t30.70 (30.15)\t30.70 (30.15)\t\n\n**PERF:  30.51 (30.26)\t30.51 (30.15)\t30.51 (30.37)\t30.51 (30.15)\t30.51 (30.18)\t30.51 (30.18)\t30.51 (30.26)\t30.51 (30.37)\t30.51 (30.47)\t30.51 (30.18)\t30.51 (30.37)\t30.51 (30.18)\t30.51 (30.37)\t30.51 (30.18)\t30.51 (30.18)\t30.51 (30.18)\t\n\n**PERF:  30.66 (30.30)\t30.66 (30.21)\t30.66 (30.40)\t30.66 (30.21)\t30.66 (30.24)\t30.66 (30.24)\t30.66 (30.30)\t30.66 (30.40)\t30.66 (30.49)\t30.66 (30.24)\t30.66 (30.40)\t30.66 (30.24)\t30.66 (30.40)\t30.66 (30.24)\t30.66 (30.24)\t30.66 (30.24)\t\n\n**PERF:  29.90 (30.27)\t29.90 (30.19)\t29.90 (30.35)\t29.90 (30.19)\t29.90 (30.21)\t29.90 (30.21)\t29.90 (30.27)\t29.90 (30.35)\t29.90 (30.43)\t29.90 (30.21)\t29.90 (30.35)\t29.90 (30.21)\t29.90 (30.35)\t29.90 (30.21)\t29.90 (30.21)\t29.90 (30.21)\t\n\n**PERF:  29.84 (30.22)\t29.84 (30.15)\t29.84 (30.30)\t29.84 (30.15)\t29.84 (30.17)\t29.84 (30.17)\t29.84 (30.22)\t29.84 (30.30)\t29.84 (30.37)\t29.84 (30.17)\t29.84 (30.30)\t29.84 (30.17)\t29.84 (30.30)\t29.84 (30.17)\t29.84 (30.17)\t29.84 (30.17)\t\n\n**PERF:  29.98 (30.20)\t29.98 (30.13)\t29.98 (30.27)\t29.98 (30.13)\t29.98 (30.15)\t29.98 (30.15)\t29.98 (30.20)\t29.98 (30.27)\t29.98 (30.33)\t29.98 (30.15)\t29.98 (30.27)\t29.98 (30.15)\t29.98 (30.27)\t29.98 (30.15)\t29.98 (30.15)\t29.98 (30.15)\t\n\n**PERF:  30.45 (30.22)\t30.45 (30.15)\t30.45 (30.28)\t30.45 (30.15)\t30.45 (30.17)\t30.45 (30.17)\t30.45 (30.22)\t30.45 (30.28)\t30.45 (30.34)\t30.45 (30.17)\t30.45 (30.28)\t30.45 (30.17)\t30.45 (30.28)\t30.45 (30.17)\t30.45 (30.17)\t30.45 (30.17)\t\n\nnvstreammux: Successfully handled EOS for source_id=4\n\nnvstreammux: Successfully handled EOS for source_id=9\n\nnvstreammux: Successfully handled EOS for source_id=11\n\nnvstreammux: Successfully handled EOS for source_id=14\n\nnvstreammux: Successfully handled EOS for source_id=5\n\nnvstreammux: Successfully handled EOS for source_id=15\n\nnvstreammux: Successfully handled EOS for source_id=13\n\nnvstreammux: Successfully handled EOS for source_id=6\n\nnvstreammux: Successfully handled EOS for source_id=3\n\nnvstreammux: Successfully handled EOS for source_id=1\n\nnvstreammux: Successfully handled EOS for source_id=0\n\nnvstreammux: Successfully handled EOS for source_id=10\n\nnvstreammux: Successfully handled EOS for source_id=2\n\nnvstreammux: Successfully handled EOS for source_id=7\n\nnvstreammux: Successfully handled EOS for source_id=12\n\nnvstreammux: Successfully handled EOS for source_id=8\n\n** INFO: <bus_callback:262>: Received EOS. Exiting ...\n\n\n\nQuitting\n\nApp run successful\n",
+      "duration_s": 69.3148787021637,
+      "cpu_percent_avg": 32.04782608695652,
+      "cpu_percent_max": 38.4,
+      "ram_used_mb_avg": 31729.132982336956,
+      "ram_used_mb_max": 32033.7734375,
+      "gpu_memory_mb_avg": 31133.260869565216,
+      "gpu_memory_mb_max": 31387.0,
+      "stream_count": 16,
+      "precision": "fp16"
+    }
+  ]
+}
