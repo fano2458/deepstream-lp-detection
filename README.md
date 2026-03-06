@@ -1,27 +1,24 @@
 # DeepStream-Yolo
 
-This section documents what was done in this repository for the YOLO26 license-plate project, based on the files currently present.
+A license plate detection pipeline that trains a YOLO26 model and deploys it with NVIDIA DeepStream for real-time, multi-stream inference on GPU hardware (tested on Jetson).
 
-### 1. Dataset download and preparation
+The pipeline covers the full workflow: dataset download, hyperparameter search, model training, TensorRT export, and DeepStream integration — with benchmarking tools to measure throughput and hardware utilization.
 
-- Dataset script: `test_quantization/download_data.py`
-- Dataset source: Roboflow `license-plate-recognition-rxg4e` (version `12`) in YOLO26 format.
-- Data config used in training/validation: `/home/nailf/test_quantization/data/data.yaml`
+---
 
-### 2. Hyperparameter search (initial tuning)
+## How it works
 
-- Notebook: `test_quantization/hyper_parameters_search.ipynb`
-- Base model: `yolo26n.pt`
-- Tuning method: `model.tune(...)`
-- Search settings captured in notebook:
-  - `epochs=5`, `iterations=10`
-  - `optimizer="AdamW"`, `imgsz=640`, `batch=128`
-  - Search over learning-rate, momentum, weight decay, loss weights, and augmentation ranges
+### 1. Dataset
 
-### 3. Main training run
+The dataset is sourced from Roboflow (`license-plate-recognition-rxg4e`, version 12) in YOLO format and downloaded via [test_quantization/download_data.py](test_quantization/download_data.py).
 
-- Notebook: `test_quantization/train.ipynb`
-- training args snapshot: `test_quantization/runs/detect/train/args.yaml`
+### 2. Hyperparameter search
+
+[test_quantization/hyper_parameters_search.ipynb](test_quantization/hyper_parameters_search.ipynb) runs a lightweight tuning sweep on `yolo26n.pt` to find good learning rate, momentum, weight decay, and augmentation settings before the full training run.
+
+### 3. Training
+
+[test_quantization/train.ipynb](test_quantization/train.ipynb) trains the model with the best hyperparameters:
 
 ```python
 from ultralytics import YOLO
@@ -44,90 +41,62 @@ model.train(
 )
 ```
 
-- Results:
-  - Training stopped at epoch `37` (early stop with patience)
-  - Best `mAP50-95(B)=0.69126` at epoch `32`
-  - Best `mAP50(B)=0.96865` at epoch `35`
-  - Final epoch metrics: precision `0.97195`, recall `0.93152`, mAP50 `0.96816`, mAP50-95 `0.69035`
+Training stopped early at epoch 37. Best results:
 
-### 4. Validation and TensorRT export checks
+| Metric | Value |
+|---|---|
+| mAP50 | 0.969 |
+| mAP50-95 | 0.691 |
+| Precision | 0.972 |
+| Recall | 0.932 |
 
-  - `test_quantization/validate.ipynb`
-- Validation flow used:
-  - Validate `best.pt`
-  - Export TensorRT engine path in notebook (`model.export(format="engine", dynamic=True, batch=8, workspace=4, half=True)`)
-  - Re-load and validate exported engine (`best.engine`)
+### 4. Validation and TensorRT export
+
+[test_quantization/validate.ipynb](test_quantization/validate.ipynb) validates `best.pt`, exports a TensorRT engine, and re-validates the engine to confirm accuracy is preserved.
 
 ### 5. Export to DeepStream-compatible ONNX
-  - `utils/export_yolo26.py`
-- Purpose of exporter:
-  - Applies YOLO26/Ultralytics export adjustments for DeepStream parser compatibility
-  - Produces `labels.txt`
-  - Produces ONNX output with DeepStream-friendly output tensor format `[x1, y1, x2, y2, score, class]`
-- Produced artifacts:
-  - `best.pt`
-  - `best.onnx`
-  - `labels.txt`
 
+[utils/export_yolo26.py](utils/export_yolo26.py) converts the trained model to an ONNX format compatible with the DeepStream parser. It reformats the output tensor to `[x1, y1, x2, y2, score, class]` and generates a `labels.txt` file.
 
-### 6. Build DeepStream custom YOLO inference library
-- Source directory: `nvdsinfer_custom_impl_Yolo/`
-- Build command:
+Output files: `best.pt`, `best.onnx`, `labels.txt`.
+
+### 6. Build the custom inference library
+
+The custom YOLO parser for DeepStream lives in [nvdsinfer_custom_impl_Yolo/](nvdsinfer_custom_impl_Yolo/). Build it with:
 
 ```bash
 export CUDA_VER=11.4
 make -C nvdsinfer_custom_impl_Yolo clean && make -C nvdsinfer_custom_impl_Yolo
 ```
 
+### 7. TensorRT engine generation
 
-### 7. TensorRT engine generation for deployment profiles
-- Engine generation is done by DeepStream on first run using `onnx-file=best.onnx`.
-- Engine artifacts currently present:
-  - `model_b1_gpu0_fp32.engine`
-  - `model_b8_gpu0_fp32.engine`
-  - `model_b8_gpu0_fp16.engine`
-- Config linkage is in `config_infer_primary_yolo26.txt`:
-  - `onnx-file=best.onnx`
-  - `model-engine-file=model_b8_gpu0_fp16.engine`
-  - `batch-size=8`
-  - `network-mode=2` (FP16)
-  - `cluster-mode=4` (no NMS required for YOLO26 export)
-  - `maintain-aspect-ratio=1`, `symmetric-padding=1`
+On first run, DeepStream automatically converts `best.onnx` into a TensorRT engine. The inference config is in [config_infer_primary_yolo26.txt](config_infer_primary_yolo26.txt) and is set up for FP16, batch size 8, with aspect-ratio-preserving padding.
 
-### 8. DeepStream app integration and runtime
-
-- App config: `deepstream_app_config.txt`
-- Primary GIE config reference:
-  - `[primary-gie] config-file=config_infer_primary_yolo26.txt`
-- Input source configured:
-  - `file:///home/jetson/Desktop/DeepStream-Yolo/video_cut.mp4`
-- Run command:
+### 8. Run DeepStream
 
 ```bash
 deepstream-app -c deepstream_app_config.txt
 ```
 
-### Benchmarks
+The app config is in [deepstream_app_config.txt](deepstream_app_config.txt). Point the `uri` field at your video source before running.
 
-- `benchmarks/run_model_benchmarks.py`
-  - Runs `ultralytics` validation for multiple model backends (`.pt`, `.engine`) on the same split.
-  - Captures mAP/precision/recall, latency (pre/infer/post), estimated FPS.
-  - Captures telemetry: CPU, RAM, GPU power, GPU memory.
+---
 
-- `benchmarks/run_deepstream_benchmarks.py`
-  - Runs `deepstream-app` configs for each stream profile.
-  - Parses FPS samples from DeepStream logs.
-  - Captures telemetry: CPU, RAM, GPU power, GPU memory.
+## Benchmarks
 
-- `benchmarks/generate_deepstream_configs.py`
-  - Auto-generates DeepStream app+infer configs for stream counts `1,2,4,8,16`.
-  - Generates FP16 variants. 
+The [benchmarks/](benchmarks/) directory contains scripts to measure model accuracy and DeepStream throughput:
 
-- `benchmarks/telemetry.py`
-  - Shared telemetry collector.
-  - Uses `nvidia-smi` when available, otherwise Jetson `tegrastats`.
+| Script | What it does |
+|---|---|
+| [run_model_benchmarks.py](benchmarks/run_model_benchmarks.py) | Validates `.pt` and `.engine` backends; reports mAP, latency, FPS, and GPU telemetry |
+| [run_deepstream_benchmarks.py](benchmarks/run_deepstream_benchmarks.py) | Runs DeepStream across stream profiles and parses FPS from logs |
+| [generate_deepstream_configs.py](benchmarks/generate_deepstream_configs.py) | Auto-generates configs for 1, 2, 4, 8, and 16 concurrent streams in FP16 |
+| [telemetry.py](benchmarks/telemetry.py) | Shared collector for CPU, RAM, GPU power, and GPU memory (supports `nvidia-smi` and Jetson `tegrastats`) |
 
-### Prerequisites
+---
 
-- Python packages: `ultralytics`, `psutil`
-- DeepStream runtime with `deepstream-app`
+## Prerequisites
+
+- Python: `ultralytics`, `psutil`
+- NVIDIA DeepStream runtime with `deepstream-app`
