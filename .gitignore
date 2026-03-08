@@ -1,2 +1,60 @@
-__pycache__
-docs
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Type checkers / linters
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# -----------------------------------------------------------------------
+# Large artifacts — do NOT commit; reference or regenerate instead
+# -----------------------------------------------------------------------
+
+# Raw dataset (download via scripts/download_data.py)
+data/
+
+# Training run artefacts (weights tracked separately; bulk images excluded)
+test_quantization/runs/
+
+# TensorRT engine files (generated on first DeepStream run)
+*.engine
+*.cache
+
+# Large model weights
+yolo26*.pt
+yolo11*.pt
+yolov8*.pt
+
+# Video files used as test sources
+*.mp4
+*.avi
+*.mkv
+
+# Calibration tables
+calib.table
+
+# docs/ (generated content)
+docs/

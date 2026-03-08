@@ -1,0 +1,19 @@
+# Core inference & training
+ultralytics>=8.4.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# ONNX export
+onnx>=1.14.0
+onnxslim>=0.1.0
+
+# Data download
+roboflow>=1.1.0
+
+# Telemetry & benchmarking
+psutil>=5.9.0
+numpy>=1.24.0
+
+# Dev / testing
+pytest>=7.0
+ruff>=0.4.0
