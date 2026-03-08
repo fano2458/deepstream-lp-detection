@@ -212,3 +212,10 @@ ruff format src/ scripts/ tests/
 | CUDA | 11.4 |
 | TensorRT | 8.5.2.2 |
 | DeepStream | 6.3.0 |
+
+
+---
+
+## License
+
+MIT — see [LICENSE.md](LICENSE.md).
