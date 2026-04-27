@@ -41,6 +41,7 @@ DeepStream-Yolo/
 │   └── labels.txt
 ├── pyproject.toml                # Package metadata + ruff config
 ├── requirements.txt
+├── architecture_comparison.ipynb   # YOLO variants + hyperparameter ablation
 └── docs/
     ├── YOLO26.md                 # Step-by-step conversion guide
     └── report.md                 # Full benchmark report
@@ -62,10 +63,17 @@ For development (linter + tests):
 pip install -e ".[dev]"
 ```
 
-### 2. Download the dataset
+### 2. Download the datasets
+
+The pipeline combines two complementary public datasets:
+
+- **Roboflow Universe** — `license-plate-recognition-rxg4e`, version 12 (YOLO format)
+- **Kaggle** — `fareselmenshawii/license-plate-dataset` (YOLO format)
 
 ```bash
 export ROBOFLOW_API_KEY=<your_key>   # get one free at https://app.roboflow.com
+export KAGGLE_USERNAME=<your_user>   # ~/.kaggle/kaggle.json also works
+export KAGGLE_KEY=<your_key>
 python scripts/download_data.py --dest data/
 ```
 
@@ -78,6 +86,25 @@ export CUDA_VER=11.4
 make -C src/nvdsinfer_custom_impl_Yolo clean && make -C src/nvdsinfer_custom_impl_Yolo
 ```
 
+---
+## Architecture comparison & hyperparameter ablation
+
+Before committing to a final architecture, we benchmarked six YOLO variants (YOLOv5n, YOLOv8n/s/m, YOLO11n, YOLO26n) under identical settings and ran an ablation study on learning rate, optimizer, and batch size. See `architecture_comparison.ipynb` for the full sweep.
+
+**Architecture comparison (short shared schedule):**
+
+| Model | mAP@50 | mAP@50-95 | Precision | Recall | FPS |
+|---|---|---|---|---|---|
+| YOLOv8s | **0.9468** | **0.6388** | **0.9789** | 0.9121 | 670 |
+| YOLOv8m | 0.9459 | 0.6366 | 0.9697 | **0.9159** | 336 |
+| YOLOv8n | 0.9419 | 0.6348 | 0.9767 | 0.9048 | **1353** |
+| YOLO11n | 0.9358 | 0.6256 | 0.9606 | 0.9031 | 1019 |
+| YOLOv5n | 0.9322 | 0.6292 | 0.9711 | 0.8964 | 1209 |
+| YOLO26n | 0.9298 | 0.6183 | 0.9293 | 0.9058 | 1038 |
+
+**Best ablation settings:** AdamW, lr = 1e-3, batch = 32 (mAP@50 = 0.9784).
+
+YOLO26n was selected for deployment based on its nano-scale parameter count and edge-friendly profile; given the full-length training schedule below, it reaches accuracy parity with the larger short-trained variants.
 ---
 
 ## Training
